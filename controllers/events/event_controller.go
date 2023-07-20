@@ -113,7 +113,7 @@ func isNotFound(err error) bool {
 // handleEvent is the meat of Reconcile, broken out for ease of testing.
 func (r *EventWatcher) handleEvent(ctx context.Context, event *corev1.Event) error {
 	log := r.Log.WithValues("event", event.Namespace+"/"+event.Name)
-	log.Info("event", "kind", event.InvolvedObject.Kind, "reason", event.Reason, "source", event.Source.Component, "fullEvent", event)
+	log.Info("event", "kind", event.InvolvedObject.Kind, "reason", event.Reason, "source", event.Source.Component, "fullEvent", event.String())
 
 	emitted, err := r.emitSpanFromEvent(ctx, log, event)
 	if err != nil {
